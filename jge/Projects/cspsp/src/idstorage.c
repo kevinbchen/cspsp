@@ -1,0 +1,1 @@
+int ReadKey(int key, char *buffer);

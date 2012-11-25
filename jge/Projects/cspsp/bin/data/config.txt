@@ -1,0 +1,12 @@
+movement = relative
+
+music = off
+
+ff = on
+
+menu = analog
+
+name = test
+
+map = Circle
+

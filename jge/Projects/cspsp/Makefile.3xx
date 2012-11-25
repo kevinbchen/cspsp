@@ -1,0 +1,28 @@
+TARGET = cspsp
+OBJS =	src/IdStorage.o src/GameState.o src/mp3player.o src/GameApp.o src/GameLauncher.o \
+		src/GameStateConnect.o src/GameStateLoading.o src/GameStateLobby.o src/GameStateMenu.o \
+		src/GameStateNewGame.o src/GameStateOnline.o src/GameStateOptions.o src/GameStatePlay.o \
+		src/GameStateSplash.o src/GameStateUpdate.o \
+		src/Person.o src/AI.o src/TileMap.o src/Bullet.o src/ParticleEngine.o src/Particle.o src/MenuItem.o src/GunObject.o src/SfxManager.o src/Node.o src/BuyMenu.o src/TeamMenu.o src/Hud.o src/Camera.o src/Wlan.o src/Globals.o src/Packet.o src/UdpManager.o src/Game.o src/PersonOnline.o src/Collision.o src/GunObjectOnline.o src/Danzeff.o src/BulletOnline.o src/Grenade.o src/Grid.o src/AStar.o src/Animation.o src/HttpManager.o \
+		src/ListBox.o src/rapmet.o \
+#		src/prof.o src/mcount.o 
+
+BUILD_PRX = 1
+PSP_FW_VERSION=371
+
+CFLAGS = -O2 -G0 -Wall -DDEVHOOK -DPSPFW3XX -g -Wno-write-strings
+#-pg
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CXXFLAGS)
+
+INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2
+LIBDIR = ../../JGE/lib/psp
+LDFLAGS =
+LIBS = -lhgetools -ljge300 -lfreetype -ljpeg -lgif -lpng -lz -lm -lmad -lmikmod -lmmio -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspgum -lpspgu -lpsprtc -lstdc++ -lpspwlan -lpspopenpsid
+
+EXTRA_TARGETS = EBOOT.PBP
+PSP_EBOOT_TITLE = CSPSP
+PSP_EBOOT_ICON = icon.png
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak
