@@ -1,4 +1,5 @@
 #include "Wlan.h"
+#include <cstring>
 
 #ifdef WIN32
 int WlanInit()

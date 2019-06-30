@@ -1,12 +1,5 @@
-movement = relative
-
+movement = absolute
 music = off
-
 ff = on
-
-menu = analog
-
-name = test
-
-map = Circle
-
+name = default
+map = gunstest

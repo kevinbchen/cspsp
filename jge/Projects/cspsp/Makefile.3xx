@@ -13,7 +13,7 @@ PSP_FW_VERSION=371
 CFLAGS = -O2 -G0 -Wall -DDEVHOOK -DPSPFW3XX -g -Wno-write-strings
 #-pg
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
-ASFLAGS = $(CXXFLAGS)
+ASFLAGS = $(CXXFLAGS) -c -x assembler-with-cpp
 
 INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2
 LIBDIR = ../../JGE/lib/psp
