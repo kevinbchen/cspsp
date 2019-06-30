@@ -263,7 +263,7 @@ void GameStateConnect::Update(float dt)
 		if (mConnectState == 4) {
 			//SocketConnect(gSocket,"74.125.19.118",80);
 			//74.125.53.141
-			gHttpManager->Connect("74.125.53.141","cspsp.appspot.com",80);
+			gHttpManager->Connect("cspsp.appspot.com", "cspsp.appspot.com", 80);
 			//gHttpManager->Connect("127.0.0.1","localhost",8080);
 			mStage = STAGE_LOGIN;
 

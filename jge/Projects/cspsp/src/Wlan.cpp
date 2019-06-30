@@ -270,11 +270,15 @@ int SocketConnect(Socket* socket, char* host, int port)
 	//socket->serverSocket = false;
 
 	// resolve host
+	struct hostent *hp;
+	hp = gethostbyname(host);
+	if (hp == NULL) {
+		return 0;
+	}
+
 	socket->addrTo.sin_family = AF_INET;
+	socket->addrTo.sin_addr = *(struct in_addr*)hp->h_addr;
 	socket->addrTo.sin_port = htons(port);
-
-
-	int err = sceNetInetInetAton(host, &socket->addrTo.sin_addr);
 
 	/*struct hostent *hp; 
 	hp = gethostbyname(host);      
@@ -295,7 +299,7 @@ int SocketConnect(Socket* socket, char* host, int port)
 	
 	SetSockNoBlock(socket->sock, 1);
 
-    err = sceNetInetConnect(socket->sock, (struct sockaddr*)&socket->addrTo, sizeof(socket->addrTo));
+	int err = sceNetInetConnect(socket->sock, (struct sockaddr*)&socket->addrTo, sizeof(socket->addrTo));
 
 	//fclose(file);
 
@@ -345,8 +349,12 @@ int SocketConnectUdp(Socket* socket, char* host, int port)
 	SetSockNoBlock(socket->sock, 1);
 	//fputs("3\r\n",file);
 
-    err = sceNetInetBind(socket->sock, (struct sockaddr*)&socket->addrTo, sizeof(socket->addrTo));   
-    
+
+	socket->addr.sin_family = AF_INET;
+	socket->addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	socket->addr.sin_port = htons(0);
+
+	err = sceNetInetBind(socket->sock, (struct sockaddr*)&socket->addr, sizeof(socket->addr));
 
 
 	//fputs("4\r\n",file);
