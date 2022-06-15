@@ -18,6 +18,7 @@ UdpManager::UdpManager(Socket* socket, float *time, float *ping, int *roundbit)
 	mSTime = 0.0f;
 	mPing = ping;
 	mClock = 0.0f;
+	mPlayerId = -1;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -160,6 +161,10 @@ void UdpManager::Update(float dt)
 		Packet packet;
 
 		packet.WriteInt8(NETVERSION);
+		// Send playerid disguised as an invalid message type
+		if (mPlayerId != -1) {
+			packet.WriteInt8(mPlayerId + 64);
+		}
 		packet.WriteInt8(TIME);
 		packet.WriteFloat(*mTime);
 		packet.WriteFloat(mSTime);
@@ -220,5 +225,6 @@ void UdpManager::Reset()
 	mOrderId = 0;
 	mSTime = 0.0f;
 	mClock = 0.0f;
+	mPlayerId = -1;
 }
 

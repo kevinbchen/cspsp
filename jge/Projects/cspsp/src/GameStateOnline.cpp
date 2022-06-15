@@ -1177,6 +1177,13 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 			round = true;
 		}
 		//printf("%s\n",(round)?"1":"0");
+
+		// Interpret a type >= 64 as our playerid
+		if (type >= 64) {
+			int playerid = type - 64;
+			mUdpManager->mPlayerId = playerid;
+		}
+		
 		sendpacket = Packet();
 
 		switch (type) {

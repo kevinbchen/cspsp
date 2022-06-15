@@ -85,6 +85,7 @@ public:
 	std::vector<Packet> mOrderedPackets;
 	std::vector<Packet> mBufferedPackets;
 	int mOrderId;
+	int mPlayerId;
 
 	int uploadsum;
 	int upload;
