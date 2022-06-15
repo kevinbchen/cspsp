@@ -244,8 +244,8 @@ void GameStateConnect::Update(float dt)
 			ConnectionItem *item = (ConnectionItem*)mConnectionsListBox->GetItem();
 			if (item != NULL) {
 				WlanInit();
-				mConnectState = 1;
 				mConnectId = item->config.index;
+				mConnectState = UseConnectionConfig(mConnectId);
 				mStage = STAGE_CONNECTING;
 			}
 		}
@@ -253,12 +253,12 @@ void GameStateConnect::Update(float dt)
 	}
 	else if (mStage == STAGE_CONNECTING) {
 		#ifdef WIN32
-		mConnectState = 1;
+		mConnectState = 0;
 		if (mEngine->GetButtonClick(PSP_CTRL_CROSS)) {
 			mConnectState = 4;
 		}
 		#else
-		mConnectState = UseConnectionConfig(mConnectId,mConnectState);
+		mConnectState = GetConnectionState(mConnectState);
 		#endif
 		if (mConnectState == 4) {
 			//SocketConnect(gSocket,"74.125.19.118",80);
@@ -551,15 +551,15 @@ void GameStateConnect::Render()
 			gFont->DrawShadowedString("[O] Cancel",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);
 			
 			gFont->SetScale(1.0f);
-			if (mConnectState >= 1 && mConnectState <= 4) {
+			if (mConnectState >= 0 && mConnectState <= 4) {
 				char buffer[128];
 				sprintf(buffer,"Connection state %i of 4",mConnectState);
 				gFont->DrawShadowedString(buffer,SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);
 			}
-			else if (mConnectState == 0) {
+			else if (mConnectState == -1) {
 				gFont->DrawShadowedString("Connection failed",SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);
 			}
-			else if (mConnectState == -1) {
+			else if (mConnectState == -2) {
 				gFont->DrawShadowedString("Connection failed (check wlan switch)",SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);
 			}
 		}

@@ -195,42 +195,32 @@ std::vector<ConnectionConfig> GetConnectionConfigs()
 	return connections;
 }
 
-int UseConnectionConfig(int config, int state)
+int UseConnectionConfig(int config)
 {
-	if (state == 1 || state == 0  || state == -1) {
-		//if (!wlanInitialized) return 0;
-		
-		if (sceWlanGetSwitchState() != 1) return -1;
+	//if (!wlanInitialized) return 0;
+	
+	if (sceWlanGetSwitchState() != 1) return -2;
 
-		if (state == 0) return 0;
-
-		int result = sceNetApctlConnect(config); 
-
-		return 2;
+	int result = sceNetApctlConnect(config); 
+	if (result < 0) {
+		return -1;
 	}
-	else {
-		
-		//int state = 0; 
-		
-		//while (1) { 
-			sceKernelDelayThread(50*1000); // 200ms 
-			
-			int err = sceNetApctlGetState(&state); 
-			if (err != 0 || state == 0) {
-				// conncection failed
-				return 0; 
-			}
-			
-			return state;
-			/*if (state == 4) {
-				//connection succeeded 
-				result = 1; 
-				break; 
-			} */
-		//} 
-		
-		//return 1; 
+
+	return 0;
+}
+
+int GetConnectionState(int state) {
+	if (state < 0) {
+		return state;
 	}
+	sceKernelDelayThread(50*1000); // 200ms
+	int lastState = state;
+	int err = sceNetApctlGetState(&state); 
+	if (err < 0 || (state == 0 && lastState > 0)) {
+		// connection failed
+		return -1;
+	}
+	return state;
 }
 
 /*char* GetIPAddress()
