@@ -34,3 +34,10 @@ The JGE library that CSPSP uses is technically cross-platform, and during the or
 
 **Important**: If you are making any incompatible changes to the networking (for example, adding or changing message types), please update the `NETVERSION` define in [jge/Projects/cspsp/src/GameApp.h](jge/Projects/cspsp/src/GameApp.h).
 
+## Ports
+
+Other developers have also made some really cool ports of CSPSP to other platforms!
+
+- [CSWEB](https://github.com/frankplus/csweb) - WebGL port by @frankplus
+  - [Live Demo](https://frankplus.github.io/)
+- [CS3DS](https://github.com/machinamentum/CS3DS) - Nintendo 3DS port by @machinamentum
