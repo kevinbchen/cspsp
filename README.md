@@ -16,6 +16,8 @@ The game is unfortunately mostly dead now, but for those who are nostalgic, the 
 
 CSPSP should run on any PSP with a custom firmware; simply copy the game into ms0:/PSP/GAME/ like any other homebrew. The most recent v1.92b release has some very minor fixes to get multiplayer working again, though there probably won't be any other players or servers online.
 
+![controls](https://user-images.githubusercontent.com/2881968/173964080-ab480a79-af94-454a-bdfe-a2a56b491cad.png)
+
 ### PPSSPP
 You can also run CSPSP using the [PPSSPP](https://www.ppsspp.org/) emulator, though the online functionality will not currently work.
 
