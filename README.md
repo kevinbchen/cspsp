@@ -19,7 +19,7 @@ CSPSP should run on any PSP with a custom firmware; simply copy the game into ms
 ![controls](https://user-images.githubusercontent.com/2881968/173964080-ab480a79-af94-454a-bdfe-a2a56b491cad.png)
 
 ### PPSSPP
-You can also run CSPSP using the [PPSSPP](https://www.ppsspp.org/) emulator, though the online functionality will not currently work.
+You can also run CSPSP using the [PPSSPP](https://www.ppsspp.org/) emulator, though the latest official release does not yet support online functionality. However, online/infrastructure support is in development (https://github.com/hrydgard/ppsspp/issues/14256), and you can find links to test builds that do already support CSPSP online (e.g. https://github.com/hrydgard/ppsspp/issues/14256#issuecomment-1136256118).
 
 ## Building
 
